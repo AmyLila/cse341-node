@@ -1,34 +1,33 @@
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 require('dotenv').config();
-let db;
+
+let _client;
+let _collection;
 
 
-//Connection Method. I learned this from a udemy course. It uses the mongodb url to connect and then logs a success or error in the console. 
-//https://www.udemy.com/course/nodejs-the-complete-guide/learn/lecture/11942758#overview
-const mongoConnection = (callback) => {
-    MongoClient.connect(process.env.DB_URI
-    )
-        .then(user => {
-            console.log('Connected! from the connection file');
-            db = user.db()
-            callback();
-        })
-        .catch(err =>{
-            console.log(err);
-            throw err;
-        });
+//Connection Method. I tried so hard to figure this out with a callback function and got stuck so I'm using Brother Lyons code. 
+const mongoConnection = () => {
+
+    MongoClient.connect(process.env.DB_URI, (err, client) => {
+        if (err) throw err;
+        _client = client
+        _collection = client.db('contacts').collection('contacts');
+        console.log('Connected! from the connection file');
+
+    });
+       
 };
 
-const getdb = () => {
-    if  (db) {
-        return db;
+const getCollection = () => {
+    if  (_collection) {
+        return _collection;
     }
     throw 'No database found.'
 
 };
 
-module.exports = mongoConnection, getdb;
+module.exports = {mongoConnection, getCollection};
 
 
 
