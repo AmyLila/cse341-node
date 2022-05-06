@@ -1,16 +1,28 @@
-GET http://localhost:3000/contacts
 
-###
-
-GET http://localhost:3000/contacts/626b5cc4d8e61d43e6713262
-
-###
+// Get all contacts
+GET http://localhost:3000/learnCRUD
 
 GET https://amy-baker-cse-341.herokuapp.com/contacts
 
 ###
+// Get Contacts by ID
+GET http://localhost:3000/contacts/626b5d49d8e61d43e6713268
 
 GET https://amy-baker-cse-341.herokuapp.com/contacts/626b5cedd8e61d43e6713264
+
+
+#####
+// Add Contact
+POST http://localhost:3000/learnCRUD
+  
+  {
+      "firstName":"Davie",
+    "lastName":"Jones",
+    "email":"bestCat@cat.com",
+    "favoriteColor":"Black",
+    "birthday":"2/22/2022"
+  }
+
 
 
 

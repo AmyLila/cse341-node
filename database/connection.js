@@ -6,7 +6,7 @@ let _client;
 let _collection;
 
 
-//Connection Method. I tried so hard to figure this out with a callback function and got stuck so I'm using Brother Lyons code. 
+//Connection Method.ghty6
 const mongoConnection = () => {
 
     MongoClient.connect(process.env.DB_URI, (err, client) => {
@@ -19,6 +19,7 @@ const mongoConnection = () => {
        
 };
 
+//Get the collection
 const getCollection = () => {
     if  (_collection) {
         return _collection;
@@ -26,6 +27,9 @@ const getCollection = () => {
     throw 'No database found.'
 
 };
+
+
+
 
 module.exports = {mongoConnection, getCollection};
 

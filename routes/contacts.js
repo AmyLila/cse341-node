@@ -2,6 +2,8 @@ const routes = require('express').Router();
 const connection = require('../database/connection');
 const ObjectId = require('mongodb').ObjectId;
 
+
+
 // code to get all contacs
 routes.get('/', (req, res) => {
 
