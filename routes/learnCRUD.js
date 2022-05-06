@@ -15,10 +15,10 @@ routes.get ('/', (req, res) => {
 //Get contact by ID
 routes.get('/:id', (req, res) => {
     const contactId = new ObjectId(req.params.id);
-    const resultsAll = connection.getCollection().find({_id: contactId});
+    const resultsOne = connection.getCollection().find({_id: contactId});
 
     //This should be in a controller all that should be in the route is routes.get('/', connection.getCollection());
-    resultsAll.toArray().then((documents) => {
+    resultsOne.toArray().then((documents) => {
         res.status(200).json(documents[0]);
         console.log(`One Contact: ${req.params.id}! From the contacts file.`)
 
@@ -41,16 +41,52 @@ routes.post('/', (req, res) => {
         birthday: req.body.birthday
   };
 
-    const response = connection.getCollection().insertOne(newContact);
-        if (response.acknowledged) {
-            res.status(201).json(response);
-            console.log(`Contact ${req.params.id} has been added to the database`);
-            
-        }
-        else {
-            res.status(500).json(response.error || 'error uploading a new contact from the contacts file');
-          }
+    const result = connection.getCollection().insertOne(newContact);
+    result.then((documents) => {
+      res.status(201).json(documents);
+
+    });
+    console.log(result);
+
+
 
 }); //End create new contact
+
+
+//Code to modify an existing contact by id
+routes.put('/:id', (req, res) => {
+  const contactId = new ObjectId(req.params.id);
+  const contact = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    favoriteColor: req.body.favoriteColor,
+    birthday: req.body.birthday
+  };
+
+  const result = connection.getCollection().replaceOne({_id: contactId}, contact);
+  result.then((documents) => {
+    res.status(202).json(documents);
+
+  });
+  
+  console.log(contact);
+ 
+});//end modify contact
+
+
+//Delete contact by id
+routes.delete('/:id', (req, res) => {
+  const contactId = new ObjectId(req.params.id);
+  const result = connection.getCollection().deleteOne({_id:contactId});
+  result.then((documents) => {
+    res.status(202).json(documents);
+
+  });
+  console.log(result);
+  
+
+
+});
 
 module.exports = routes  
