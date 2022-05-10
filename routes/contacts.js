@@ -1,5 +1,5 @@
 const routes = require('express').Router();
-const connection = require('../database/connection');
+const connection = require('../data/connection');
 const ObjectId = require('mongodb').ObjectId;
 
 
