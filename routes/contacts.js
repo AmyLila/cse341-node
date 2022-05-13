@@ -1,6 +1,8 @@
 const routes = require('express').Router();
 const connection = require('../data/connection');
 const ObjectId = require('mongodb').ObjectId;
+const bodyParser = require('body-parser');
+routes.use(bodyParser.json());
 
 
 
