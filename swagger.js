@@ -7,6 +7,8 @@ const doc = {
   },
   host: 'localhost:3000',
   schemes: ['http'],
+
+  //for heroku use schemes: ['https']
 };
 
 const outputFile = '.swagger-output.json';

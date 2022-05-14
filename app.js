@@ -1,5 +1,5 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const connection = require('./data/connection');
 const cors = require('cors');
 
@@ -10,19 +10,11 @@ const app = express();
 connection.mongoConnection();
 
 app
-.use(bodyParser.json())
+// .use(bodyParser.json())
 .use(cors())
 .use(express.json())
-.use(express.urlencoded({ extended: true }))
+// .use(express.urlencoded({ extended: true }))
 .use('/', require('./routes'));;
-
-
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-origin', '*');
-//   next();
-// });
-
-
 
 
 
