@@ -5,10 +5,13 @@ const doc = {
     title: 'My API',
     description: 'contacts API',
   },
-  host: 'localhost:3000',
-  schemes: ['http'],
+  // host: 'localhost:3000',
+  // schemes: ['http'],
 
-  //for heroku use schemes: ['https']
+  host: 'https://amy-baker-cse-341.herokuapp.com',
+  schemes: ['https'],
+
+  //for heroku use schemes: ['https']  https://amy-baker-cse-341.herokuapp.com
 };
 
 const outputFile = '.swagger-output.json';
